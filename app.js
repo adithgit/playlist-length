@@ -18,6 +18,8 @@ const videoArr = [];
 const videoDur = [];
 let totalSeconds = 0;
 
+let playlistURL = "";
+
 // POST request getting the playlist URL and parsing it.
 
 app.post('/get-data',async (req,res)=>{
@@ -26,8 +28,8 @@ app.post('/get-data',async (req,res)=>{
     const params = new URLSearchParams(req.body.playlistURL);
     const playlistID =params.get('https://www.youtube.com/playlist?list')
 
-    // Concat the ID with base API calling URL along with API_KEY
-    const playlistURL = playlistBaseURL+playlistID;
+    // Concat the ID with base API calliPLxCzCOWd7aiFAN6I8CuViBuCdJgiOkT2Yng URL along with API_KEY
+    playlistURL = playlistBaseURL+playlistID;
 
     // Find all the videos in playlist and push them to VideoArr
     getAllVideos(playlistURL, function(){
@@ -71,7 +73,6 @@ function getAllVideos(url, callback){
 function getVideoLength(callback){
 
 if(videoArr.length==0){
-    console.log("callback");
     callback();
 }else{
     const video = videoArr.pop();
@@ -123,5 +124,3 @@ function convertToSeconds(callback){
 app.listen(3000|| process.env.PORT ,()=>{
     console.log("Listening on port 3000");
 })
-
-
