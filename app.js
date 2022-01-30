@@ -44,7 +44,7 @@ app.post('/get-data',async (req,res)=>{
                 var date = new Date(null);
                 date.setSeconds(totalSeconds);
                 const result = date.toISOString().substr(11,8);
-                res.send(result)
+                res.render('index',{result:"The length of playlist is :- "+result});
             })
         })
     });
